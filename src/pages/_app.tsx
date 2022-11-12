@@ -37,12 +37,12 @@ export default function App({ Component, pageProps }: AppProps) {
               className="ml-auto cursor-pointer"
             />
             <li>
-              <a
+              <Link
                 href="/"
                 className="border-b-2 border-transparent  focus:text-red-500 focus:border-red-500"
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
               <Link
@@ -53,20 +53,20 @@ export default function App({ Component, pageProps }: AppProps) {
               </Link>
             </li>
             <li>
-              <a
-                href=""
+              <Link
+                href="contact"
                 className="border-b-2 border-transparent  focus:text-red-500 focus:border-red-500"
               >
                 Contact
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href=""
+              <Link
+                href="/about_us"
                 className="border-b-2 border-transparent  focus:text-red-500 focus:border-red-500"
               >
                 About Us
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
