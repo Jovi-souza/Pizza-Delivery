@@ -4,6 +4,7 @@ import { List, X } from 'phosphor-react'
 import type { AppProps } from 'next/app'
 import Image from 'next/image'
 import { useState } from 'react'
+import Link from 'next/link'
 
 export default function App({ Component, pageProps }: AppProps) {
   const [toggleMenu, setToggleMenu] = useState('translate-x-96')
@@ -37,19 +38,19 @@ export default function App({ Component, pageProps }: AppProps) {
             />
             <li>
               <a
-                href=""
+                href="/"
                 className="border-b-2 border-transparent  focus:text-red-500 focus:border-red-500"
               >
                 Home
               </a>
             </li>
             <li>
-              <a
-                href=""
+              <Link
+                href="/catering"
                 className="border-b-2 border-transparent  focus:text-red-500 focus:border-red-500"
               >
                 Catering
-              </a>
+              </Link>
             </li>
             <li>
               <a

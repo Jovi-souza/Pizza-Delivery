@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Pizza from '../assets/Pizza.svg'
+import Pizza from '../../../assets/Pizza.svg'
 export function Card() {
   return (
     <div className="flex items-center gap-4 p-4 rounded-3xl shadow-lg">

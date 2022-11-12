@@ -1,7 +1,9 @@
 import Image from 'next/image'
 import Location from '../assets/Location.png'
 import { Calendar, MapPin } from 'phosphor-react'
-import { Card } from '../Components/pizza'
+import { Pizza } from '../Components/Menu/Pizza'
+import { Form } from '../Components/Form/contact'
+import { Button } from '../Components/Button/order'
 
 export default function Home() {
   return (
@@ -26,10 +28,7 @@ export default function Home() {
             industry. Lorem Ipsum has been the industrys standard dummy text
             ever since the 1500s, when an unknown
           </p>
-          <button className="flex flex-col items-center bg-red-600 text-white rounded-2xl px-6 py-4">
-            <strong className="text-base">ORDER ONLINE</strong>
-            <span className="text-xs font-light">Delivery or Pickup</span>
-          </button>
+          <Button />
         </section>
         <section>
           <div className="flex flex-col items-center gap-3">
@@ -165,79 +164,8 @@ export default function Home() {
             </a>
           </div>
         </section>
-        <section className="flex flex-col gap-6 p-4">
-          <header>
-            <nav className="flex flex-col items-center gap-4">
-              <h1 className="text-red-500 text-3xl font-bold">Menu</h1>
-              <div className="flex gap-6">
-                <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
-                  Pizza
-                </button>
-                <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
-                  Pizza
-                </button>
-                <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
-                  Pizza
-                </button>
-                <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
-                  Pizza
-                </button>
-                <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
-                  Pizza
-                </button>
-              </div>
-            </nav>
-          </header>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <button className="flex flex-col items-center justify-center w-max m-auto px-6 py-4 rounded-xl text-white font-bold bg-red-500">
-            ORDER ONLINE
-            <span className="font-extralight">Delivery or Pickup</span>
-          </button>
-        </section>
-        <section className="p-4">
-          <form className="flex flex-col items-center gap-4">
-            <h1 className="text-2xl font-bold">
-              <span className="text-red-500">Contact</span> Us
-            </h1>
-            <input
-              type="text"
-              placeholder="First name"
-              required
-              className="w-full px-6 py-4 outline-red-500 rounded-full border border-red-500"
-            />
-            <input
-              type="text"
-              placeholder="Last name"
-              className="w-full px-6 py-4 outline-red-500 rounded-full border border-red-500"
-            />
-            <input
-              type="text"
-              placeholder="E-mail"
-              required
-              className="w-full px-6 py-4 outline-red-500 rounded-full border border-red-500"
-            />
-            <input
-              type="text"
-              placeholder="Subject"
-              className="w-full px-6 py-4 outline-red-500 rounded-full border border-red-500"
-            />
-            <input
-              type="text"
-              placeholder="Message"
-              required
-              className="w-full px-6 py-4 pb-28 outline-red-500 rounded-2xl border border-red-500"
-            />
-            <button className="flex flex-col items-center font-bold text-white px-12 py-2 rounded-3xl bg-red-500 ">
-              Submit
-              <span className="font-light">Your message</span>
-            </button>
-          </form>
-        </section>
+        <Pizza />
+        <Form />
       </div>
     </div>
   )
