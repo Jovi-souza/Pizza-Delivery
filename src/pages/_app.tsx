@@ -1,5 +1,6 @@
 import '../../styles/globals.css'
 import Logo from '../assets/Logo.svg'
+import LogoWhite from '../assets/LogoWhite.svg'
 import { List, X } from 'phosphor-react'
 import type { AppProps } from 'next/app'
 import Image from 'next/image'
@@ -72,6 +73,26 @@ export default function App({ Component, pageProps }: AppProps) {
         </nav>
       </header>
       <Component {...pageProps} />
+      <footer className="bg-gray-700 p-4 flex flex-col gap-4 text-gray-400">
+        <Image src={LogoWhite} alt="" />
+        <div className="flex flex-col">
+          <h1 className="text-white text-2xl">Salvation Pizza</h1>
+          <Link href="/">Home</Link>
+          <Link href="/catering">Catering</Link>
+          <Link href="/contact">Contact</Link>
+          <Link href="/about_us">About Us</Link>
+        </div>
+        <div className="flex flex-col">
+          <h1 className="text-white text-2xl">Social media</h1>
+          <Link href="/">Instagram</Link>
+          <Link href="/catering">Facebook</Link>
+          <Link href="/contact">Twitter</Link>
+        </div>
+        <div className="flex flex-col">
+          <h1 className="text-white text-2xl">Contact</h1>
+          <p>(83) 9 9369-3665</p>
+        </div>
+      </footer>
     </div>
   )
 }

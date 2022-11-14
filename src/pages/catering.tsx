@@ -1,6 +1,6 @@
 import { Button } from '../Components/Button/order'
 import { Form } from '../Components/Form/contact'
-import { Pizza } from '../Components/Menu/Pizza'
+// import { Card } from '../Components/Menu/component/card'
 
 export default function Catering() {
   return (
@@ -29,7 +29,42 @@ export default function Catering() {
         </p>
         <Button />
       </section>
-      <Pizza />
+      ;
+      <section className="flex flex-col gap-6 p-4">
+        <header>
+          <nav className="flex flex-col items-center gap-4">
+            <h1 className="text-red-500 text-3xl font-bold">Menu</h1>
+            <div className="flex gap-6">
+              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
+                Pizza
+              </button>
+              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
+                Pizza
+              </button>
+              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
+                Pizza
+              </button>
+              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
+                Pizza
+              </button>
+              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
+                Pizza
+              </button>
+            </div>
+          </nav>
+        </header>
+        {/* {products.map((product) => {
+          return (
+            <Card
+              key={product.id}
+              name={product.name}
+              imageUrl={product.imageUrl}
+              price={product.price}
+            />
+          )
+        })} */}
+        <Button />
+      </section>
       <Form />
     </div>
   )
