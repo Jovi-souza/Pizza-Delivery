@@ -8,13 +8,11 @@ interface cardProps {
 
 export function Card({ name, price, imageUrl }: cardProps) {
   return (
-    <div className="grid grid-cols-2 items-stretch max-w-sm gap-4 p-4 rounded-3xl shadow-lg">
-      <div className="w-full">
-        <Image src={imageUrl} alt="" width={125} height={125} />
-      </div>
-      <div className="flex flex-col gap-2">
-        <h1 className="text-xl font-semibold">{name}</h1>
-        <span className="font-semibold">{price}</span>
+    <div className="grid grid-cols-2 items-stretch w-80 max-h-40 gap-4 p-4 rounded-3xl shadow-lg overflow-hidden">
+      <Image src={imageUrl} alt="" width={120} height={120} />
+      <div className="flex flex-col">
+        <h1 className="text-base font-semibold">{name}</h1>
+        <span className="text-lg font-semibold mt-auto">{price}</span>
       </div>
     </div>
   )
