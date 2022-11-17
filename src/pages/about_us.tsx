@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { Button } from '../Components/Button/order'
 import { Form } from '../Components/Form/contact'
-import { CaretLeft, CaretRight } from 'phosphor-react'
 import { useKeenSlider } from 'keen-slider/react'
 
 import Location1 from '../assets//Location.png'
@@ -9,163 +8,83 @@ import Location2 from '../assets//Location2.jpg'
 import Location3 from '../assets//Location3.jpg'
 import Location4 from '../assets//Location4.jpg'
 import Location5 from '../assets//Location5.jpg'
-import { GetStaticProps } from 'next'
-import { stripe } from '../lib/stripe'
-import Stripe from 'stripe'
-import { Card } from '../Components/Menu/component/card'
 
-interface PizzaProps {
-  products: {
-    id: string
-    name: string
-    imageUrl: string
-    price: string
-    description: string
-    defaultPriceId: string
-  }[]
-}
-
-export default function AboutUs({ products }: PizzaProps) {
+export default function AboutUs() {
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 1,
-      spacing: 8,
+      spacing: 14,
     },
   })
   return (
-    <div className="p-4">
-      <section className="flex flex-col items-center gap-4">
-        <h1 className="text-4xl font-Cabin font-bold uppercase lg:text-7xl">
-          About Us
-        </h1>
-        <p className="text-center text-sm font-semibold">
-          We are proud to be locally owned and operated! When it comes to
-          planning your next event, party, business meeting, or family
-          celebration let Salvation Pizza take care of the catering details for
-          you. Whether your event is small or large, our team can save you time
-          and money. We can take care of as many or as few of the details as you
-          wish with a la carte catering options including pick up, delivery, set
-          up, servicing, and clean up.
-        </p>
-        <p className="text-center text-sm font-semibold">
-          Let us bring our delicious and freshly made specialty pizzas,
-          sandwiches, calzones, meatballs, salads, pasta dishes, and desserts to
-          your location. If you’re interested in healthy alternatives, we offer
-          a gluten-free pizza crust, healthy salads, and our pizzas can be
-          customized to accommodate vegetarian and vegan diets.
-        </p>
-        <p className="text-center text-sm font-semibold">
-          Call us 512-499-0105 or catering@salvationpizza.com for our full
-          catering menu!
-        </p>
-        <Button />
-      </section>
-      <section className="my-8">
-        <div className="relative">
-          <div ref={sliderRef} className="flex">
-            <Image
-              src={Location1}
-              alt=""
-              className="rounded-2xl keen-slider__slide"
-            />
-            <Image
-              src={Location2}
-              alt=""
-              height={260}
-              className="rounded-2xl keen-slider__slide"
-            />
-            <Image
-              src={Location3}
-              alt=""
-              className="rounded-2xl keen-slider__slide"
-              height={260}
-            />
-            <Image
-              src={Location4}
-              alt=""
-              className="rounded-2xl keen-slider__slide"
-              height={260}
-            />
-            <Image
-              src={Location5}
-              alt=""
-              className="rounded-2xl keen-slider__slide"
-              height={260}
-            />
-          </div>
-          <CaretRight
-            size={28}
-            className="absolute right-2 top-1/2 cursor-pointer bg-white rounded-full"
-          />
-          <CaretLeft
-            size={28}
-            className="absolute top-1/2 left-2 cursor-pointer
-            bg-white rounded-full"
-          />
-        </div>
-      </section>
-      <section className="flex flex-col gap-6 p-4 justify-center items-center">
-        <header>
-          <nav className="flex flex-col items-center gap-4">
-            <h1 className="text-red-500 text-3xl font-bold">Menu</h1>
-            <div className="flex gap-6">
-              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
-                Pizza
-              </button>
-              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
-                Pizza
-              </button>
-              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
-                Pizza
-              </button>
-              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
-                Pizza
-              </button>
-              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
-                Pizza
-              </button>
-            </div>
-          </nav>
-        </header>
-        <div className="flex flex-wrap justify-center items-center gap-4">
-          {products.map((product) => {
-            return (
-              <Card
-                key={product.id}
-                name={product.name}
-                imageUrl={product.imageUrl}
-                price={product.price}
+    <div className="flex flex-col gap-4 p-4 justify-center items-center">
+      <div className="lg:grid lg:grid-cols-2 overflow-hidden">
+        <section className="flex flex-col items-center gap-4 lg:justify-start lg:items-start">
+          <h1 className="text-4xl font-Cabin font-bold uppercase lg:text-6xl lg:text-left">
+            About Us
+          </h1>
+          <p className="text-center text-sm max-w-2xl font-semibold md:w-68 lg:text-base lg:text-left">
+            We are proud to be locally owned and operated! When it comes to
+            planning your next event, party, business meeting, or family
+            celebration let Salvation Pizza take care of the catering details
+            for you. Whether your event is small or large, our team can save you
+            time and money. We can take care of as many or as few of the details
+            as you wish with a la carte catering options including pick up,
+            delivery, set up, servicing, and clean up.
+          </p>
+          <p className="text-center text-sm max-w-2xl font-semibold md:w-68 lg:text-base lg:text-left">
+            Let us bring our delicious and freshly made specialty pizzas,
+            sandwiches, calzones, meatballs, salads, pasta dishes, and desserts
+            to your location. If you’re interested in healthy alternatives, we
+            offer a gluten-free pizza crust, healthy salads, and our pizzas can
+            be customized to accommodate vegetarian and vegan diets.
+          </p>
+          <p className="text-center text-sm max-w-2xl font-semibold md:w-68 lg:text-base lg:text-left">
+            Call us 512-499-0105 or catering@salvationpizza.com for our full
+            catering menu!
+          </p>
+          <Button />
+        </section>
+        <section className="my-8">
+          <div className="overflow-hidden">
+            <div
+              ref={sliderRef}
+              className="flex w-screen max-w-xs p-2 lg:max-w-lg"
+            >
+              <Image
+                src={Location1}
+                alt=""
+                className="rounded-2xl keen-slider__slide"
               />
-            )
-          })}
-        </div>
-        <Button />
-      </section>
+              <Image
+                src={Location2}
+                alt=""
+                height={260}
+                className="rounded-2xl keen-slider__slide"
+              />
+              <Image
+                src={Location3}
+                alt=""
+                className="rounded-2xl keen-slider__slide"
+                height={260}
+              />
+              <Image
+                src={Location4}
+                alt=""
+                className="rounded-2xl keen-slider__slide"
+                height={260}
+              />
+              <Image
+                src={Location5}
+                alt=""
+                className="rounded-2xl keen-slider__slide"
+                height={260}
+              />
+            </div>
+          </div>
+        </section>
+      </div>
       <Form />
     </div>
   )
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  const response = await stripe.products.list({
-    expand: ['data.default_price'],
-  })
-  const products = response.data.map((product) => {
-    const price = product.default_price as Stripe.Price
-    return {
-      id: product.id,
-      name: product.name,
-      price: new Intl.NumberFormat('pt-br', {
-        style: 'currency',
-        currency: 'BRL',
-      }).format(price.unit_amount! / 100),
-      imageUrl: product.images[0],
-      defaultPriceid: price.id,
-    }
-  })
-  return {
-    props: {
-      products,
-    },
-  }
 }
