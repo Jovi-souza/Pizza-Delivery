@@ -28,8 +28,8 @@ interface PizzaProps {
 export default function Home({ products }: PizzaProps) {
   return (
     <div className="flex flex-col gap-4 justify-center items-center">
-      <div className="md:grid md:grid-cols-2 md:p-4">
-        <section className="relative w-screen md:w-96">
+      <div className="md:grid md:grid-cols-2 md:p-4 lg:max-w-screen-xl">
+        <section className="relative">
           <Image src={Location} alt="" />
           <Dialog.Root>
             <Dialog.Trigger className="flex items-center gap-10 absolute left-0 bottom-8 bg-red-600 p-2 rounded-r-full ">
@@ -76,14 +76,14 @@ export default function Home({ products }: PizzaProps) {
             </Dialog.Portal>
           </Dialog.Root>
         </section>
-        <section className="flex flex-col justify-center items-center gap-4 p-4 md:-order-1">
+        <section className="flex flex-col justify-center items-center gap-4 p-4 md:-order-1 lg:justify-start lg:items-start lg:gap-20">
           <Link href="/contact" className="text-lg text-red-600 md:hidden">
             View on the map
           </Link>
-          <h1 className="text-5xl text-center font-Cabin font-bold">
+          <h1 className="text-5xl text-center font-Cabin font-bold lg:text-7xl lg:text-left">
             11501 Rock Rose Ave 146
           </h1>
-          <p className="text-center font-bold text-sm md:w-68 ">
+          <p className="text-center font-bold text-sm md:w-68 lg:text-xl lg:text-left">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industrys standard dummy text
             ever since the 1500s, when an unknown

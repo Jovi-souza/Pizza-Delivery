@@ -9,9 +9,23 @@ import Location2 from '../assets//Location2.jpg'
 import Location3 from '../assets//Location3.jpg'
 import Location4 from '../assets//Location4.jpg'
 import Location5 from '../assets//Location5.jpg'
+import { GetStaticProps } from 'next'
+import { stripe } from '../lib/stripe'
+import Stripe from 'stripe'
 import { Card } from '../Components/Menu/component/card'
 
-export default function AboutUs() {
+interface PizzaProps {
+  products: {
+    id: string
+    name: string
+    imageUrl: string
+    price: string
+    description: string
+    defaultPriceId: string
+  }[]
+}
+
+export default function AboutUs({ products }: PizzaProps) {
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 1,
@@ -21,7 +35,9 @@ export default function AboutUs() {
   return (
     <div className="p-4">
       <section className="flex flex-col items-center gap-4">
-        <h1 className="text-4xl font-Cabin font-bold uppercase">About Us</h1>
+        <h1 className="text-4xl font-Cabin font-bold uppercase lg:text-7xl">
+          About Us
+        </h1>
         <p className="text-center text-sm font-semibold">
           We are proud to be locally owned and operated! When it comes to
           planning your next event, party, business meeting, or family
@@ -88,8 +104,7 @@ export default function AboutUs() {
           />
         </div>
       </section>
-      ;
-      <section className="flex flex-col gap-6 p-4">
+      <section className="flex flex-col gap-6 p-4 justify-center items-center">
         <header>
           <nav className="flex flex-col items-center gap-4">
             <h1 className="text-red-500 text-3xl font-bold">Menu</h1>
@@ -112,19 +127,45 @@ export default function AboutUs() {
             </div>
           </nav>
         </header>
-        {/* {products.map((product) => {
-          return (
-            <Card
-              key={product.id}
-              name={product.name}
-              imageUrl={product.imageUrl}
-              price={product.price}
-            />
-          )
-        })} */}
+        <div className="flex flex-wrap justify-center items-center gap-4">
+          {products.map((product) => {
+            return (
+              <Card
+                key={product.id}
+                name={product.name}
+                imageUrl={product.imageUrl}
+                price={product.price}
+              />
+            )
+          })}
+        </div>
         <Button />
       </section>
       <Form />
     </div>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const response = await stripe.products.list({
+    expand: ['data.default_price'],
+  })
+  const products = response.data.map((product) => {
+    const price = product.default_price as Stripe.Price
+    return {
+      id: product.id,
+      name: product.name,
+      price: new Intl.NumberFormat('pt-br', {
+        style: 'currency',
+        currency: 'BRL',
+      }).format(price.unit_amount! / 100),
+      imageUrl: product.images[0],
+      defaultPriceid: price.id,
+    }
+  })
+  return {
+    props: {
+      products,
+    },
+  }
 }

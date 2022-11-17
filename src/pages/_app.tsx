@@ -18,29 +18,29 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <div className="overflow-hidden relative">
-      <header className="flex justify-between items-center p-4 overflow-hidden">
+      <header className="flex justify-between items-center p-4 overflow-hidden border-b-2 mb-4 lg:justify-around">
         <div>
-          <Image src={Logo} alt="Logo" className="w-40" />
+          <Image src={Logo} alt="Logo" className="max-w-xs md:w-screen" />
         </div>
         <nav className="flex">
           <List
             size={24}
             weight="bold"
-            className="cursor-pointer"
+            className="cursor-pointer lg:hidden"
             onClick={handleToggleMenu}
           />
           <ul
-            className={`flex flex-col items-end gap-4 top-0 right-0 p-6 bg-white fixed z-20 h-screen border-l-2 border-gray-200 transform duration-300 ${toggleMenu} `}
+            className={`flex flex-col items-end gap-4 top-0 right-0 p-6 bg-white fixed z-20 h-screen border-l-2 border-gray-200 transform duration-300 ${toggleMenu} lg:static lg:z-0 lg:translate-x-0 lg:flex-row lg:h-max lg:border-none lg:gap-12`}
           >
             <X
               onClick={handleToggleMenu}
               size={20}
-              className="ml-auto cursor-pointer"
+              className="ml-auto cursor-pointer lg:hidden"
             />
             <li>
               <Link
                 href="/"
-                className="border-b-2 border-transparent  focus:text-red-500 focus:border-red-500"
+                className="border-b-2 border-transparent  focus:text-red-500 focus:border-red-500 lg:text-xl"
               >
                 Home
               </Link>
@@ -48,7 +48,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <li>
               <Link
                 href="/catering"
-                className="border-b-2 border-transparent  focus:text-red-500 focus:border-red-500"
+                className="border-b-2 border-transparent  focus:text-red-500 focus:border-red-500 lg:text-xl"
               >
                 Catering
               </Link>
@@ -56,7 +56,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <li>
               <Link
                 href="contact"
-                className="border-b-2 border-transparent  focus:text-red-500 focus:border-red-500"
+                className="border-b-2 border-transparent  focus:text-red-500 focus:border-red-500 lg:text-xl"
               >
                 Contact
               </Link>
@@ -64,7 +64,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <li>
               <Link
                 href="/about_us"
-                className="border-b-2 border-transparent  focus:text-red-500 focus:border-red-500"
+                className="border-b-2 border-transparent  focus:text-red-500 focus:border-red-500 lg:text-xl"
               >
                 About Us
               </Link>
