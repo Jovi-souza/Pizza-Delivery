@@ -1,18 +1,18 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { GetStaticProps } from 'next'
-import * as Dialog from '@radix-ui/react-dialog'
 
 import Stripe from 'stripe'
 import { stripe } from '../lib/stripe'
 
-import { Calendar, Check, MapPin } from 'phosphor-react'
-import Logo from '../assets/Logo.svg'
+import { Calendar, MapPin } from 'phosphor-react'
 import Location from '../assets/Location.png'
+import * as Dialog from '@radix-ui/react-dialog'
+import * as RadioGroup from '@radix-ui/react-radio-group'
 
 import { Form } from '../Components/Form/contact'
 import { Button } from '../Components/Button/order'
-import { Card } from '../Components/Menu/component/card'
+import { Card } from '../Components/Card'
 
 interface PizzaProps {
   products: {
@@ -39,38 +39,51 @@ export default function Home({ products }: PizzaProps) {
               </span>
             </Dialog.Trigger>
             <Dialog.Portal>
-              <Dialog.Content className="flex flex-col  items-center w-max gap-8 px-6 py-8 rounded-xl bg-white fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <Dialog.Content className="flex flex-col  items-center w-max gap-8 px-6 py-8 rounded-xl bg-black text-white fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <Dialog.Title>
-                  <Image src={Logo} width={150} alt="" />
+                  <h1>Choose a restaurant</h1>
                 </Dialog.Title>
                 <Dialog.Description className="flex flex-col gap-2 items-center">
-                  <h1 className="text-xl font-semibold">Sample text</h1>
-                  <span>1. Lorem Ipsum is simply dummy text</span>
-                  <span>2. Lorem Ipsum is simply dummy text</span>
-                  <span>3. Lorem Ipsum is simply dummy text</span>
-                  <div className="flex flex-col gap-2">
-                    <button className="grid grid-cols-[100px_minmax(10px,_1fr)_20px] items-center p-2 gap-4 border-2 font-semibold border-red-500 rounded-full text-red-600 focus:bg-red-500 focus:text-white">
-                      <span className="text-5xl">1</span>
-                      <div className="flex flex-col">
-                        11501 Rainey St. <span>146</span>
+                  <form action="" className="flex flex-col ">
+                    <RadioGroup.Root className="flex flex-col gap-2">
+                      <div className="flex items-center gap-4">
+                        <RadioGroup.Item
+                          value="1"
+                          className="bg-white w-6 h-6 rounded-full"
+                        >
+                          <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[' '] after:block after:w-3 after:h-3 after:rounded-lg after:bg-red-600" />
+                        </RadioGroup.Item>
+                        <label htmlFor="" className="">
+                          testes
+                        </label>
                       </div>
-                    </button>
-                    <button className="grid grid-cols-[100px_minmax(10px,_1fr)_20px] items-center p-2 gap-4 border-2 font-semibold border-red-500 rounded-full text-red-600  focus:bg-red-500 focus:text-white">
-                      <span className="text-5xl">2</span>
-                      <div className="flex flex-col">
-                        11501 Rainey St. <span>146</span>
+                      <div className="flex items-center gap-4">
+                        <RadioGroup.Item
+                          value="2"
+                          className="bg-white w-6 h-6 rounded-full"
+                        >
+                          <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[' '] after:block after:w-3 after:h-3 after:rounded-lg after:bg-red-600" />
+                        </RadioGroup.Item>
+                        <label htmlFor="" className="">
+                          testes
+                        </label>
                       </div>
-                    </button>
-                    <button className="grid grid-cols-[100px_minmax(10px,_1fr)_20px] items-center p-2 gap-4 border-2 font-semibold border-red-500 rounded-full text-red-600 focus:bg-red-500 focus:text-white">
-                      <p className="text-5xl">3</p>
-                      <div className="flex flex-col">
-                        11501 Rainey St. <span>146</span>
+                      <div className="flex items-center gap-4">
+                        <RadioGroup.Item
+                          value="3"
+                          className="bg-white w-6 h-6 rounded-full"
+                        >
+                          <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[' '] after:block after:w-3 after:h-3 after:rounded-lg after:bg-red-600" />
+                        </RadioGroup.Item>
+                        <label htmlFor="" className="">
+                          testes
+                        </label>
                       </div>
-                    </button>
-                  </div>
-                  <Dialog.Close className="text-white bg-red-500 p-2 rounded-full">
+                    </RadioGroup.Root>
+                  </form>
+                  {/* <Dialog.Close className="text-white bg-red-500 p-2 rounded-full">
                     <Check size={24} weight="bold" />
-                  </Dialog.Close>
+                  </Dialog.Close> */}
                 </Dialog.Description>
               </Dialog.Content>
             </Dialog.Portal>
@@ -260,9 +273,11 @@ export default function Home({ products }: PizzaProps) {
             return (
               <Card
                 key={product.id}
+                id={product.id}
                 name={product.name}
                 imageUrl={product.imageUrl}
                 price={product.price}
+                description={product.description}
               />
             )
           })}
@@ -289,6 +304,7 @@ export const getStaticProps: GetStaticProps = async () => {
         currency: 'BRL',
       }).format(price.unit_amount! / 100),
       imageUrl: product.images[0],
+      description: product.description,
       defaultPriceid: price.id,
     }
   })

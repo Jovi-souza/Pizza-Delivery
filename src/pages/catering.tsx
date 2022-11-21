@@ -2,7 +2,7 @@ import { GetStaticProps } from 'next'
 import Stripe from 'stripe'
 import { Button } from '../Components/Button/order'
 import { Form } from '../Components/Form/contact'
-import { Card } from '../Components/Menu/component/card'
+import { Card } from '../Components/Card'
 import { stripe } from '../lib/stripe'
 
 interface PizzaProps {

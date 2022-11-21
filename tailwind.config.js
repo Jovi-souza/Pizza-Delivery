@@ -10,6 +10,12 @@ module.exports = {
     fontFamily: {
       Cabin: ['Cabin Sketch', 'cursive'],
     },
+    animation: {
+      openModal: '150ms cubic-bezier(0.16, 1, 0.3, 1)',
+    },
+    width: {
+      Modal: '22rem',
+    },
   },
   plugins: [],
 }
