@@ -34,7 +34,9 @@ export function Card({ name, price, imageUrl, description, id }: cardProps) {
             <Image src={imageUrl} alt="" width={80} height={80} />
           </div>
           <div className="flex flex-col items-start">
-            <h1 className="text-base font-semibold">{name}</h1>
+            <h1 className="text-base font-semibold text-left w-48 overflow-hidden whitespace-nowrap overflow-ellipsis">
+              {name}
+            </h1>
             <span className="text-lg font-semibold mt-auto">{price}</span>
           </div>
         </div>
@@ -43,7 +45,7 @@ export function Card({ name, price, imageUrl, description, id }: cardProps) {
         <Dialog.Overlay className="animate-openModal" />
         <Dialog.Content
           className="bg-white rounded-md fixed 
-        top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-Modal max-h-64 p-6 animate-openModal border border-red-500"
+        top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 p-6 border border-red-500"
         >
           <Dialog.Description>
             <div className="grid grid-cols-[100px_minmax(180px,_1fr)_100px] items-center gap-5">

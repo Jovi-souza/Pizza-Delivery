@@ -1,4 +1,4 @@
-import { ItensCart } from './components/CartItens'
+import { BasketItens } from './components/BasketItens'
 import { useContext } from 'react'
 import { ShoppingCartContext } from '../../context/cartContext'
 import { ArrowCircleLeft } from 'phosphor-react'
@@ -26,7 +26,7 @@ export default function Basket() {
         <div className="flex flex-col gap-6">
           {itens.map((item) => {
             return (
-              <ItensCart
+              <BasketItens
                 key={item.id}
                 id={item.id}
                 name={item.name}

@@ -11,7 +11,7 @@ interface ItensCartProps {
   description: string
 }
 
-export function ItensCart({
+export function BasketItens({
   id,
   description,
   name,
