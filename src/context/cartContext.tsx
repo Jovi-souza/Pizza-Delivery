@@ -9,8 +9,9 @@ interface ItemProps {
 }
 
 interface CartProps {
-  item: ItemProps[]
+  itens: ItemProps[]
   addItemToCart: (product: ItemProps) => void
+  DeleteItem: (id: string) => void
 }
 
 interface ChildrenProps {
@@ -20,16 +21,19 @@ interface ChildrenProps {
 export const ShoppingCartContext = createContext({} as CartProps)
 
 export function CartProvider({ children }: ChildrenProps) {
-  const [item, setItem] = useState<ItemProps[]>([])
+  const [itens, setItens] = useState<ItemProps[]>([])
 
   function addItemToCart(product: ItemProps) {
-    setItem((state) => [...state, product])
+    setItens((state) => [...state, product])
   }
 
-  console.log(item)
+  function DeleteItem(id: string) {
+    const itemRemoved = itens.filter((item) => item.id !== id)
+    setItens(itemRemoved)
+  }
 
   return (
-    <ShoppingCartContext.Provider value={{ item, addItemToCart }}>
+    <ShoppingCartContext.Provider value={{ itens, addItemToCart, DeleteItem }}>
       {children}
     </ShoppingCartContext.Provider>
   )

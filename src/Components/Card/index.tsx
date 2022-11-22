@@ -29,9 +29,11 @@ export function Card({ name, price, imageUrl, description, id }: cardProps) {
   return (
     <Dialog.Root>
       <Dialog.Trigger>
-        <div className="grid grid-cols-2 items-stretch w-80 max-h-40 gap-4 p-4 rounded-3xl shadow-lg overflow-hidden">
-          <Image src={imageUrl} alt="" width={120} height={120} />
-          <div className="flex flex-col">
+        <div className="grid grid-cols-[80px_minmax(180px,_1fr)_180px] items-stretch w-80 max-h-40 gap-4 p-4 rounded-3xl shadow-lg overflow-hidden">
+          <div>
+            <Image src={imageUrl} alt="" width={80} height={80} />
+          </div>
+          <div className="flex flex-col items-start">
             <h1 className="text-base font-semibold">{name}</h1>
             <span className="text-lg font-semibold mt-auto">{price}</span>
           </div>
@@ -62,18 +64,20 @@ export function Card({ name, price, imageUrl, description, id }: cardProps) {
                   </div>
                   <div className="flex justify-center items-center gap-2 text-xs">
                     <div className="font-semibold">{price}</div>
-                    <button
-                      onClick={handleAddItem}
-                      className="text-red-500 border border-red-500 px-2 rounded-full"
-                    >
-                      BUY
-                    </button>
+                    <Dialog.Close>
+                      <button
+                        onClick={handleAddItem}
+                        className="text-red-500 border border-red-500 px-2 rounded-full"
+                      >
+                        BUY
+                      </button>
+                    </Dialog.Close>
                   </div>
                 </div>
               </div>
             </div>
           </Dialog.Description>
-          <Dialog.Close className="absolute top-2 left-4">
+          <Dialog.Close className="absolute top-2 left-4 ">
             <X size={20} />
           </Dialog.Close>
         </Dialog.Content>

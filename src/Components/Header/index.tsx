@@ -7,7 +7,7 @@ import { ShoppingCartContext } from '../../context/cartContext'
 
 export function Header() {
   const [toggleMenu, setToggleMenu] = useState('translate-x-96')
-  const { item } = useContext(ShoppingCartContext)
+  const { itens } = useContext(ShoppingCartContext)
 
   function handleToggleMenu() {
     setToggleMenu(
@@ -72,7 +72,7 @@ export function Header() {
               <ShoppingCart size={24} weight="fill" color="white" />
             </div>
             <span className="text-xs text-white border-2 rounded-full absolute -right-1 -top-2 bg-red-600 px-1">
-              {item.length}
+              {itens.length}
             </span>
           </button>
         </ul>
