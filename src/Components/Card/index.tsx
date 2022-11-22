@@ -45,7 +45,7 @@ export function Card({ name, price, imageUrl, description, id }: cardProps) {
         <Dialog.Overlay className="animate-openModal" />
         <Dialog.Content
           className="bg-white rounded-md fixed 
-        top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 p-6 border border-red-500"
+        top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-sm p-6 border border-red-500"
         >
           <Dialog.Description>
             <div className="grid grid-cols-[100px_minmax(180px,_1fr)_100px] items-center gap-5">
@@ -58,21 +58,11 @@ export function Card({ name, price, imageUrl, description, id }: cardProps) {
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Accusantium, corrupti magni.
                 </p>
-                <div className="flex justify-between">
-                  <div className="flex gap-2">
-                    <button className="bg-red-500 rounded-full">-</button>
-                    <span>1</span>
-                    <button className="bg-red-500 rounded-full">+</button>
-                  </div>
-                  <div className="flex justify-center items-center gap-2 text-xs">
-                    <div className="font-semibold">{price}</div>
-                    <Dialog.Close>
-                      <button
-                        onClick={handleAddItem}
-                        className="text-red-500 border border-red-500 px-2 rounded-full"
-                      >
-                        BUY
-                      </button>
+                <div className="flex">
+                  <div className="flex gap-14 text-xs">
+                    <div className="text-sm font-semibold">{price}</div>
+                    <Dialog.Close className="flex text-red-500 font-bold border border-red-500 px-2 rounded-full hover:text-white hover:bg-red-500">
+                      <button onClick={handleAddItem}>BUY</button>
                     </Dialog.Close>
                   </div>
                 </div>

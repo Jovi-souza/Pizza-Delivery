@@ -246,26 +246,6 @@ export default function Home({ products }: PizzaProps) {
         <header>
           <nav className="flex flex-col items-center gap-4">
             <h1 className="text-red-500 text-3xl font-bold">Menu</h1>
-            <div className="flex gap-6 sm:gap-10">
-              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500 sm:text-xl">
-                Pizza
-              </button>
-              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500 sm:text-xl">
-                Pizza
-              </button>
-              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500 sm:text-xl">
-                Pizza
-              </button>
-              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500 sm:text-xl">
-                Pizza
-              </button>
-              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500 sm:text-xl">
-                Pizza
-              </button>
-              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500 sm:text-xl">
-                Pizza
-              </button>
-            </div>
           </nav>
         </header>
         <div className="flex flex-wrap justify-center items-center gap-4">

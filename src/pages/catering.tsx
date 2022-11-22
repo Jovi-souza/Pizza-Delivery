@@ -1,22 +1,7 @@
-import { GetStaticProps } from 'next'
-import Stripe from 'stripe'
 import { Button } from '../Components/Button/order'
 import { Form } from '../Components/Form/contact'
-import { Card } from '../Components/Card'
-import { stripe } from '../lib/stripe'
 
-interface PizzaProps {
-  products: {
-    id: string
-    name: string
-    imageUrl: string
-    price: string
-    description: string
-    defaultPriceId: string
-  }[]
-}
-
-export default function Catering({ products }: PizzaProps) {
+export default function Catering() {
   return (
     <div className="p-4 flex flex-col gap-4 justify-center items-center">
       <section className="flex flex-col items-center gap-4">
@@ -45,70 +30,7 @@ export default function Catering({ products }: PizzaProps) {
         </p>
         <Button />
       </section>
-      <section className="flex flex-col gap-6 p-4 justify-center items-center">
-        <header>
-          <nav className="flex flex-col items-center gap-4">
-            <h1 className="text-red-500 text-3xl font-bold">Menu</h1>
-            <div className="flex gap-6">
-              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
-                Pizza
-              </button>
-              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
-                Pizza
-              </button>
-              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
-                Pizza
-              </button>
-              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
-                Pizza
-              </button>
-              <button className="border-b-2 border-transparent focus:text-red-500 focus:border-red-500">
-                Pizza
-              </button>
-            </div>
-          </nav>
-        </header>
-        <div className="flex flex-wrap justify-center items-center gap-4">
-          {products.map((product) => {
-            return (
-              <Card
-                key={product.id}
-                name={product.name}
-                imageUrl={product.imageUrl}
-                price={product.price}
-              />
-            )
-          })}
-        </div>
-        <Button />
-      </section>
       <Form />
     </div>
   )
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  const response = await stripe.products.list({
-    expand: ['data.default_price'],
-  })
-
-  const products = response.data.map((product) => {
-    const price = product.default_price as Stripe.Price
-
-    return {
-      id: product.id,
-      name: product.name,
-      price: new Intl.NumberFormat('pt-br', {
-        style: 'currency',
-        currency: 'BRL',
-      }).format(price.unit_amount! / 100),
-      imageUrl: product.images[0],
-      defaultPriceid: price.id,
-    }
-  })
-  return {
-    props: {
-      products,
-    },
-  }
 }

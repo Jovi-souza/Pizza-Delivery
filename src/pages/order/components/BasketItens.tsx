@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { TrashSimple } from 'phosphor-react'
 import { ShoppingCartContext } from '../../../context/cartContext'
 
@@ -19,6 +19,18 @@ export function BasketItens({
   url,
 }: ItensCartProps) {
   const { DeleteItem } = useContext(ShoppingCartContext)
+  let [quantityOfItems, setQuantityOfItems] = useState(1)
+
+  function handleAddQuantityOfItems() {
+    setQuantityOfItems(++quantityOfItems)
+  }
+
+  function handleRemoveQuantityOfItems() {
+    if (quantityOfItems === 1) {
+      setQuantityOfItems((quantityOfItems = 2))
+    }
+    setQuantityOfItems(--quantityOfItems)
+  }
 
   function handleDeleteItem() {
     DeleteItem(id)
@@ -35,9 +47,9 @@ export function BasketItens({
       </div>
       <div className="flex gap-2 items-center justify-center text-sm">
         <div className="flex gap-2 border rounded-full px-2">
-          <button>-</button>
-          <span>1</span>
-          <button>+</button>
+          <button onClick={handleRemoveQuantityOfItems}>-</button>
+          <span>{quantityOfItems}</span>
+          <button onClick={handleAddQuantityOfItems}>+</button>
         </div>
         <span className=" font-bold">RS {price}</span>
         <button>
