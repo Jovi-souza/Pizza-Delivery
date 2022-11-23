@@ -5,14 +5,14 @@ import { GetStaticProps } from 'next'
 import Stripe from 'stripe'
 import { stripe } from '../lib/stripe'
 
-import { Calendar, MapPin } from 'phosphor-react'
+import { Calendar } from 'phosphor-react'
 import Location from '../assets/Location.png'
-import * as Dialog from '@radix-ui/react-dialog'
-import * as RadioGroup from '@radix-ui/react-radio-group'
 
 import { Form } from '../Components/Form/contact'
 import { Button } from '../Components/Button/order'
-import { Card } from '../Components/Card'
+import { Card } from '../Components/Cards/Pizza'
+import { SelectRestaurant } from '../Components/Modais/selectRestaurant'
+import { GamesToday } from '../Components/Cards/GamesToday'
 
 interface PizzaProps {
   products: {
@@ -31,63 +31,7 @@ export default function Home({ products }: PizzaProps) {
       <div className="md:grid md:grid-cols-2 md:p-4 lg:max-w-screen-xl">
         <section className="relative">
           <Image src={Location} alt="" />
-          <Dialog.Root>
-            <Dialog.Trigger className="flex items-center gap-10 absolute left-0 bottom-8 bg-red-600 p-2 rounded-r-full ">
-              <MapPin weight="fill" size={32} color="white" />
-              <span className="w-32 text-xs text-left text-white font-bold">
-                11501 Rock Rose Ave #146
-              </span>
-            </Dialog.Trigger>
-            <Dialog.Portal>
-              <Dialog.Content className="flex flex-col  items-center w-max gap-8 px-6 py-8 rounded-xl bg-black text-white fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <Dialog.Title>
-                  <h1>Choose a restaurant</h1>
-                </Dialog.Title>
-                <Dialog.Description className="flex flex-col gap-2 items-center">
-                  <form action="" className="flex flex-col ">
-                    <RadioGroup.Root className="flex flex-col gap-2">
-                      <div className="flex items-center gap-4">
-                        <RadioGroup.Item
-                          value="1"
-                          className="bg-white w-6 h-6 rounded-full"
-                        >
-                          <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[' '] after:block after:w-3 after:h-3 after:rounded-lg after:bg-red-600" />
-                        </RadioGroup.Item>
-                        <label htmlFor="" className="">
-                          testes
-                        </label>
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <RadioGroup.Item
-                          value="2"
-                          className="bg-white w-6 h-6 rounded-full"
-                        >
-                          <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[' '] after:block after:w-3 after:h-3 after:rounded-lg after:bg-red-600" />
-                        </RadioGroup.Item>
-                        <label htmlFor="" className="">
-                          testes
-                        </label>
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <RadioGroup.Item
-                          value="3"
-                          className="bg-white w-6 h-6 rounded-full"
-                        >
-                          <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[' '] after:block after:w-3 after:h-3 after:rounded-lg after:bg-red-600" />
-                        </RadioGroup.Item>
-                        <label htmlFor="" className="">
-                          testes
-                        </label>
-                      </div>
-                    </RadioGroup.Root>
-                  </form>
-                  {/* <Dialog.Close className="text-white bg-red-500 p-2 rounded-full">
-                    <Check size={24} weight="bold" />
-                  </Dialog.Close> */}
-                </Dialog.Description>
-              </Dialog.Content>
-            </Dialog.Portal>
-          </Dialog.Root>
+          <SelectRestaurant />
         </section>
         <section className="flex flex-col justify-center items-center gap-4 p-4 md:-order-1 lg:justify-start lg:items-start lg:gap-20">
           <Link href="/contact" className="text-lg text-red-600 md:hidden">
@@ -115,50 +59,10 @@ export default function Home({ products }: PizzaProps) {
           </p>
         </div>
         <div className="flex flex-col justify-center items-center p-4 m-auto gap-4 md:flex-row md:flex-wrap">
-          <div className="flex items-center flex-col gap-2 rounded-xl max-w-xs p-4 text-center shadow-xl shadow-gray-700/25">
-            <h1 className="text-center text-lg font-semibold">
-              Brazil - Espania | Football
-            </h1>
-            <p className="text-xs font-light w-48">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industrys standard dummy text
-              ever since the 1500s, when an unknown printer took a galley
-            </p>
-            <span className="font-semibold">04:00 pm - 10 nov</span>
-          </div>
-          <div className="flex items-center flex-col gap-2 rounded-xl max-w-xs p-4 text-center shadow-xl shadow-gray-700/25">
-            <h1 className="text-center text-lg font-semibold">
-              Brazil - Espania | Football
-            </h1>
-            <p className="text-xs font-light w-48">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industrys standard dummy text
-              ever since the 1500s, when an unknown printer took a galley
-            </p>
-            <span className="font-semibold">04:00 pm - 10 nov</span>
-          </div>
-          <div className="flex items-center flex-col gap-2 rounded-xl max-w-xs p-4 text-center shadow-xl shadow-gray-700/25">
-            <h1 className="text-center text-lg font-semibold">
-              Brazil - Espania | Football
-            </h1>
-            <p className="text-xs font-light w-48">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industrys standard dummy text
-              ever since the 1500s, when an unknown printer took a galley
-            </p>
-            <span className="font-semibold">04:00 pm - 10 nov</span>
-          </div>
-          <div className="flex items-center flex-col gap-2 rounded-xl max-w-xs p-4 text-center shadow-xl shadow-gray-700/25">
-            <h1 className="text-center text-lg font-semibold">
-              Brazil - Espania | Football
-            </h1>
-            <p className="text-xs font-light w-48">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industrys standard dummy text
-              ever since the 1500s, when an unknown printer took a galley
-            </p>
-            <span className="font-semibold">04:00 pm - 10 nov</span>
-          </div>
+          <GamesToday />
+          <GamesToday />
+          <GamesToday />
+          <GamesToday />
         </div>
       </section>
       <section className="flex flex-col gap-6 p-4">
@@ -244,9 +148,11 @@ export default function Home({ products }: PizzaProps) {
       </section>
       <section className="flex flex-col gap-6 p-4 justify-center items-center">
         <header>
-          <nav className="flex flex-col items-center gap-4">
-            <h1 className="text-red-500 text-3xl font-bold">Menu</h1>
-          </nav>
+          <div className="flex flex-col items-center gap-4">
+            <Link href="/" className="text-red-500 text-3xl font-bold">
+              View full menu
+            </Link>
+          </div>
         </header>
         <div className="flex flex-wrap justify-center items-center gap-4">
           {products.map((product) => {

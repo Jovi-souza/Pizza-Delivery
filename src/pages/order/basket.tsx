@@ -6,10 +6,7 @@ import Link from 'next/link'
 
 export default function Basket() {
   const { itens } = useContext(ShoppingCartContext)
-  const haveItens =
-    itens.length === 0
-      ? 'cursor-not-allowed opacity-80'
-      : 'cursor-pointer opacity-100'
+  const haveItens = itens.length === 0 ? 'hidden' : 'flex'
 
   const converter = itens.map((value) => {
     return parseFloat(value.price.replace('R$', ''))
