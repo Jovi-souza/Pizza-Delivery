@@ -28,15 +28,7 @@ export function CartProvider({ children }: ChildrenProps) {
   const [cartItens, setCartItens] = useState<ItemProps[]>([])
 
   function addItemToCart(product: ItemProps) {
-    const newProduct = {
-      id: product.id,
-      name: product.name,
-      imageUrl: product.imageUrl,
-      description: product.description,
-      price: product.price,
-      quantity: 1,
-    }
-    setCartItens((state) => [...state, newProduct])
+    setCartItens((state) => [...state, product])
   }
 
   function removeFromCart(id: string) {

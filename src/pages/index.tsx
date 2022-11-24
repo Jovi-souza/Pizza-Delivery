@@ -22,6 +22,7 @@ interface PizzaProps {
     price: string
     description: string
     defaultPriceId: string
+    quantity: number
   }[]
 }
 
@@ -164,6 +165,7 @@ export default function Home({ products }: PizzaProps) {
                 imageUrl={product.imageUrl}
                 price={product.price}
                 description={product.description}
+                quantity={product.quantity}
               />
             )
           })}
@@ -179,8 +181,8 @@ export const getStaticProps: GetStaticProps = async () => {
   const response = await stripe.products.list({
     expand: ['data.default_price'],
   })
-
   const products = response.data.map((product) => {
+    const quantity = 1
     const price = product.default_price as Stripe.Price
     return {
       id: product.id,
@@ -192,6 +194,7 @@ export const getStaticProps: GetStaticProps = async () => {
       imageUrl: product.images[0],
       description: product.description,
       defaultPriceid: price.id,
+      quantity,
     }
   })
 
