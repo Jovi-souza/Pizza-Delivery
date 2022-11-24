@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { TrashSimple } from 'phosphor-react'
 import { ShoppingCartContext } from '../../../context/cartContext'
 
@@ -9,6 +9,7 @@ interface ItensCartProps {
   url: string
   price: string
   description: string
+  quantity: number
 }
 
 export function BasketItens({
@@ -17,25 +18,15 @@ export function BasketItens({
   name,
   price,
   url,
+  quantity,
 }: ItensCartProps) {
-  const { DeleteItem } = useContext(ShoppingCartContext)
-  let [quantityOfItems, setQuantityOfItems] = useState(1)
+  const { increaseCartQuantity, decreaseCartQuantity, removeFromCart } =
+    useContext(ShoppingCartContext)
+  console.log(quantity)
 
-  function handleAddQuantityOfItems() {
-    setQuantityOfItems(++quantityOfItems)
-  }
+  const converter = parseFloat(price.replace('R$', ''))
 
-  function handleRemoveQuantityOfItems() {
-    if (quantityOfItems === 1) {
-      setQuantityOfItems((quantityOfItems = 2))
-    }
-    setQuantityOfItems(--quantityOfItems)
-  }
-
-  function handleDeleteItem() {
-    DeleteItem(id)
-  }
-
+  const totalPrice = quantity * converter
   return (
     <div className="grid grid-cols-[60px_minmax(80px,_1fr)_160px] items-center justify-center py-4 border-b-2">
       <div className="object-cover">
@@ -47,16 +38,15 @@ export function BasketItens({
       </div>
       <div className="flex gap-2 items-center justify-center text-sm">
         <div className="flex gap-2 border rounded-full px-2">
-          <button onClick={handleRemoveQuantityOfItems}>-</button>
-          <span>{quantityOfItems}</span>
-          <button onClick={handleAddQuantityOfItems}>+</button>
+          <button onClick={() => decreaseCartQuantity(id)}>-</button>
+          <span>{quantity}</span>
+          <button onClick={() => increaseCartQuantity(id)}>+</button>
         </div>
-        <span className=" font-bold">RS {price}</span>
-        <button>
+        <span className=" font-bold">R$ {totalPrice}</span>
+        <button onClick={() => removeFromCart(id)}>
           <TrashSimple
             size={16}
             weight="fill"
-            onClick={handleDeleteItem}
             className="text-gray-500 transition ease-in-out hover:text-red-600"
           />
         </button>

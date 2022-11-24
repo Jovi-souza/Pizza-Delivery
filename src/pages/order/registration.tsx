@@ -1,3 +1,5 @@
+import Link from 'next/link'
+import { ArrowCircleLeft } from 'phosphor-react'
 import { DeliveryTime } from './components/DeliveryTime'
 import { FormRegistration } from './components/orderRegistration'
 
@@ -29,7 +31,7 @@ export default function Registration() {
               className="border px-2 py-1 rounded-md outline-red-500"
             />
           </label>
-          <div className="flex justify-between relative">
+          <div className="flex flex-col justify-between relative">
             <span>Delivery adress</span>
             <FormRegistration />
           </div>
@@ -50,8 +52,21 @@ export default function Registration() {
           </button>
         </div>
       </div>
-      <div></div>
-      <div></div>
+      <div className="flex justify-between mt-8">
+        <Link
+          href="/order/basket"
+          className="flex justify-center items-center border gap-4 px-4 rounded-full text-xs uppercase text-gray-500"
+        >
+          <ArrowCircleLeft size={16} weight="regular" />
+          back
+        </Link>
+        <Link
+          href="/order/success"
+          className={`bg-red-500 px-4 py-2 rounded-full uppercase font-semibold text-white text-sm`}
+        >
+          place your order
+        </Link>
+      </div>
     </form>
   )
 }

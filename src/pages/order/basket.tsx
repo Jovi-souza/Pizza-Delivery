@@ -5,11 +5,11 @@ import { ArrowCircleLeft } from 'phosphor-react'
 import Link from 'next/link'
 
 export default function Basket() {
-  const { itens } = useContext(ShoppingCartContext)
-  const haveItens = itens.length === 0 ? 'hidden' : 'flex'
+  const { cartItens } = useContext(ShoppingCartContext)
+  const haveItens = cartItens.length === 0 ? 'hidden' : 'flex'
 
-  const converter = itens.map((value) => {
-    return parseFloat(value.price.replace('R$', ''))
+  const converter = cartItens.map((item) => {
+    return parseFloat(item.price.replace('R$', ''))
   })
 
   const TotalValue = converter.reduce((pv, cv) => {
@@ -21,7 +21,7 @@ export default function Basket() {
       <div className="flex flex-col gap-4">
         <h1 className="text-3xl font-bold">Basket</h1>
         <div className="flex flex-col gap-6">
-          {itens.map((item) => {
+          {cartItens.map((item) => {
             return (
               <BasketItens
                 key={item.id}
@@ -30,6 +30,7 @@ export default function Basket() {
                 url={item.imageUrl}
                 description={item.description}
                 price={item.price}
+                quantity={item.quantity}
               />
             )
           })}

@@ -11,9 +11,17 @@ interface cardProps {
   price: string
   id: string
   description: string
+  quantity: number
 }
 
-export function Card({ name, price, imageUrl, description, id }: cardProps) {
+export function Card({
+  name,
+  price,
+  imageUrl,
+  description,
+  id,
+  quantity,
+}: cardProps) {
   const { addItemToCart } = useContext(ShoppingCartContext)
 
   function handleAddItem() {
@@ -23,6 +31,7 @@ export function Card({ name, price, imageUrl, description, id }: cardProps) {
       imageUrl,
       description,
       price,
+      quantity,
     })
   }
 
@@ -54,15 +63,18 @@ export function Card({ name, price, imageUrl, description, id }: cardProps) {
               </div>
               <div className="flex flex-col gap-2">
                 <h1 className="font-semibold">{name}</h1>
-                <p className="text-xs text-gray-400">
+                <div className="text-xs text-gray-400">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Accusantium, corrupti magni.
-                </p>
+                </div>
                 <div className="flex">
                   <div className="flex gap-14 text-xs">
                     <div className="text-sm font-semibold">{price}</div>
-                    <Dialog.Close className="flex text-red-500 font-bold border border-red-500 px-2 rounded-full hover:text-white hover:bg-red-500">
-                      <button onClick={handleAddItem}>BUY</button>
+                    <Dialog.Close
+                      onClick={handleAddItem}
+                      className="flex text-red-500 font-bold border border-red-500 px-2 rounded-full hover:text-white hover:bg-red-500"
+                    >
+                      BUY
                     </Dialog.Close>
                   </div>
                 </div>
