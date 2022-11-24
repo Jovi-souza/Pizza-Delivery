@@ -12,7 +12,7 @@ export default function Success() {
         </p>
         <button>
           <Link
-            href=""
+            href="/"
             className="flex justify-center items-center border gap-4 px-8 py-2 rounded-full text-xs uppercase text-gray-500"
           >
             <ArrowCircleLeft size={16} weight="regular" />

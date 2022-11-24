@@ -8,12 +8,13 @@ export default function Basket() {
   const { cartItens } = useContext(ShoppingCartContext)
   const haveItens = cartItens.length === 0 ? 'hidden' : 'flex'
 
-  const converter = cartItens.map((item) => {
-    return parseFloat(item.price.replace('R$', ''))
+  const teste = cartItens.map((item) => {
+    const convertedPrice = parseFloat(item.price.replace('R$', ''))
+    return convertedPrice * item.quantity
   })
 
-  const TotalValue = converter.reduce((pv, cv) => {
-    return pv + cv
+  const totalValue = teste.reduce((at, ac) => {
+    return at + ac
   }, 0)
 
   return (
@@ -37,7 +38,7 @@ export default function Basket() {
         </div>
       </div>
       <span className="ml-auto font-semibold">
-        Amount: <strong className="text-red-500">R$ {TotalValue}</strong>
+        Amount: <strong className="text-red-500">R$ {totalValue}</strong>
       </span>
       <div className="flex justify-between">
         <Link

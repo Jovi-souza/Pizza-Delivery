@@ -18,15 +18,19 @@ export function BasketItens({
   name,
   price,
   url,
-  quantity,
 }: ItensCartProps) {
-  const { increaseCartQuantity, decreaseCartQuantity, removeFromCart } =
-    useContext(ShoppingCartContext)
-  console.log(quantity)
+  const {
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    removeFromCart,
+    getQuantityOfItens,
+  } = useContext(ShoppingCartContext)
+
+  const quantity = getQuantityOfItens(id)
 
   const converter = parseFloat(price.replace('R$', ''))
-
   const totalPrice = quantity * converter
+
   return (
     <div className="grid grid-cols-[60px_minmax(80px,_1fr)_160px] items-center justify-center py-4 border-b-2">
       <div className="object-cover">

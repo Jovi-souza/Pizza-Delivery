@@ -26,7 +26,6 @@ export const ShoppingCartContext = createContext({} as CartProps)
 
 export function CartProvider({ children }: ChildrenProps) {
   const [cartItens, setCartItens] = useState<ItemProps[]>([])
-  // const [quantity, setQuantity] = useState(1)
 
   function addItemToCart(product: ItemProps) {
     const newProduct = {
@@ -50,22 +49,25 @@ export function CartProvider({ children }: ChildrenProps) {
   }
 
   function increaseCartQuantity(id: string) {
-    const selectItem = cartItens.filter((item) => {
-      return item.id === id
-    })
-    return selectItem.map((prop) => ++prop.quantity)
+    const copyCartItens = [...cartItens]
+    const item = copyCartItens.find((product) => product.id === id)
+    if (item) {
+      ++item.quantity
+    }
+    setCartItens(copyCartItens)
   }
 
-  // function increaseCartQuantity(id: string) {
-  //   const selectItem = cartItens.find((item) => item.id === id)
-  //   console.log(selectItem?.quantity)
-  //   if (selectItem) {
-  //     return ++selectItem.quantity
-  //   }
-  //   return selectItem
-  // }
-
-  function decreaseCartQuantity(id: string) {}
+  function decreaseCartQuantity(id: string) {
+    const copyCartItens = [...cartItens]
+    const item = copyCartItens.find((product) => product.id === id)
+    if (item) {
+      if (item.quantity === 1) {
+        item.quantity = 2
+      }
+      --item.quantity
+    }
+    setCartItens(copyCartItens)
+  }
 
   return (
     <ShoppingCartContext.Provider
