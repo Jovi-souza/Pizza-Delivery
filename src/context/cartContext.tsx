@@ -28,7 +28,14 @@ export function CartProvider({ children }: ChildrenProps) {
   const [cartItens, setCartItens] = useState<ItemProps[]>([])
 
   function addItemToCart(product: ItemProps) {
-    setCartItens((state) => [...state, product])
+    const copyCartItens = [...cartItens]
+    const findSameItem = copyCartItens.find((item) => item.id === product.id)
+
+    if (findSameItem) {
+      window.alert('este item já existe em seu carrinho')
+    } else {
+      setCartItens((state) => [...state, product])
+    }
   }
 
   function removeFromCart(id: string) {

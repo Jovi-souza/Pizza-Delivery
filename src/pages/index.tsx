@@ -150,7 +150,7 @@ export default function Home({ products }: PizzaProps) {
       <section className="flex flex-col gap-6 p-4 justify-center items-center">
         <header>
           <div className="flex flex-col items-center gap-4">
-            <Link href="/" className="text-red-500 text-3xl font-bold">
+            <Link href="/menu" className="text-red-500 text-3xl font-bold">
               View full menu
             </Link>
           </div>
@@ -180,7 +180,9 @@ export default function Home({ products }: PizzaProps) {
 export const getStaticProps: GetStaticProps = async () => {
   const response = await stripe.products.list({
     expand: ['data.default_price'],
+    limit: 5,
   })
+
   const products = response.data.map((product) => {
     const quantity = 1
     const price = product.default_price as Stripe.Price
