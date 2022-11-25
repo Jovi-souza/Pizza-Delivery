@@ -1,8 +1,7 @@
 import '../../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { Header } from '../Components/Header'
-import { Footer } from '../Components/Footer'
 import { CartProvider } from '../context/cartContext'
+import { Header } from '../Components/Header'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -10,7 +9,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <CartProvider>
         <Header />
         <Component {...pageProps} />
-        <Footer />
       </CartProvider>
     </div>
   )

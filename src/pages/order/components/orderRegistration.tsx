@@ -1,7 +1,8 @@
 export function FormRegistration() {
   return (
     <>
-      <div className="grid grid-cols-3 gap-2 my-4">
+      <span className="mt-8">Delivery adress</span>
+      <div className="grid grid-cols-3 gap-2">
         <input
           type="text"
           placeholder="Street"

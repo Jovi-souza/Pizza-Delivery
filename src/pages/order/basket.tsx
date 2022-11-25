@@ -18,10 +18,10 @@ export default function Basket() {
   }, 0)
 
   return (
-    <div className="flex flex-col gap-4 p-4">
-      <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 p-4 max-w-2xl m-auto">
+      <div>
         <h1 className="text-3xl font-bold">Basket</h1>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 h-max max-h-96 overflow-y-scroll">
           {cartItens.map((item) => {
             return (
               <BasketItens
