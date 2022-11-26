@@ -1,80 +1,90 @@
-import { useState, useContext } from 'react'
-import { List, ShoppingCart, X } from 'phosphor-react'
+import { useContext } from 'react'
+import {
+  Article,
+  BookOpen,
+  Chats,
+  House,
+  List,
+  Pizza,
+  Tote,
+  X,
+} from 'phosphor-react'
 import Logo from '../../assets/Logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ShoppingCartContext } from '../../context/cartContext'
 
 export function Header() {
-  const [toggleMenu, setToggleMenu] = useState('translate-x-96')
-  const { cartItens } = useContext(ShoppingCartContext)
-
-  function handleToggleMenu() {
-    setToggleMenu(
-      toggleMenu === 'translate-x-96' ? 'translate-x-0' : 'translate-x-96',
-    )
-  }
+  const { cartItens, toggleMenu, handleToggleMenu } =
+    useContext(ShoppingCartContext)
 
   return (
-    <header className="flex justify-between items-center p-4 overflow-hidden border-b-2 mb-4 lg:justify-around">
+    <header className="flex justify-between items-center bg-white p-4 overflow-hidden border-b-2 lg:justify-around">
       <div>
-        <Image src={Logo} alt="Logo" className="max-w-xs md:w-screen" />
+        <Image src={Logo} alt="Logo" className="w-36 lg:w-44" />
       </div>
-      <nav className="flex">
+      <nav className="relative">
         <List
-          size={24}
+          size={20}
           weight="bold"
           className="cursor-pointer lg:hidden"
           onClick={handleToggleMenu}
         />
         <ul
-          className={`flex flex-col items-end gap-4 top-0 right-0 p-6 bg-white fixed z-20 h-screen border-l-2 border-gray-200 transform duration-300 ${toggleMenu} lg:static lg:z-0 lg:translate-x-0 lg:flex-row lg:h-max lg:border-none lg:gap-12`}
+          className={`flex flex-col items-center gap-2 top-0 right-0 px-4 py-6 bg-white fixed z-20 h-screen border-l-2 border-gray-200 transform duration-300 ${toggleMenu} lg:static lg:z-0 lg:translate-x-0 lg:flex-row lg:h-max lg:border-none lg:gap-12`}
         >
           <X
             onClick={handleToggleMenu}
             size={20}
-            className="ml-auto cursor-pointer lg:hidden"
+            className="cursor-pointer lg:hidden"
           />
-          <li>
-            <Link
-              href="/"
-              className="border-b-2 border-transparent  focus:text-red-500 focus:border-red-500 lg:text-xl"
-            >
-              Home
+          <li className="p-2 rounded-md border-b-2 border-transparent  hover:text-white hover:bg-red-500 lg:p-0 lg:hover:bg-white lg:hover:text-red-500">
+            <Link href="/" about="Home" as="Home">
+              <House size={20} weight="bold" className="lg:hidden" />
+              <span className="hidden lg:flex">Home</span>
             </Link>
           </li>
-          <li>
-            <Link
-              href="/catering"
-              className="border-b-2 border-transparent  focus:text-red-500 focus:border-red-500 lg:text-xl"
-            >
-              Catering
+          <li className="p-2 rounded-md border-b-2 border-transparent  hover:text-white hover:bg-red-500 lg:p-0 lg:hover:bg-white lg:hover:text-red-500">
+            <Link href="/catering" as="Catering">
+              <BookOpen size={20} weight="bold" className="lg:hidden" />
+              <span className="hidden lg:flex">Catering</span>
             </Link>
           </li>
-          <li>
-            <Link
-              href="contact"
-              className="border-b-2 border-transparent  focus:text-red-500 focus:border-red-500 lg:text-xl"
-            >
-              Contact
+          <li className="p-2 rounded-md border-b-2 border-transparent  hover:text-white hover:bg-red-500 lg:p-0 lg:hover:bg-white lg:hover:text-red-500">
+            <Link href="/contact" as="Contact">
+              <Chats size={20} weight="bold" className="lg:hidden" />
+              <span className="hidden lg:flex">Contact</span>
             </Link>
           </li>
-          <li>
-            <Link
-              href="/about_us"
-              className="border-b-2 border-transparent  focus:text-red-500 focus:border-red-500 lg:text-xl"
-            >
-              About Us
+          <li className="p-2 rounded-md border-b-2 border-transparent  hover:text-white hover:bg-red-500 lg:p-0 lg:hover:bg-white lg:hover:text-red-500">
+            <Link href="/about_us" as="About us">
+              <Article size={20} weight="bold" className="lg:hidden" />
+              <span className="hidden lg:flex">About us</span>
             </Link>
           </li>
-          <button className="relative">
-            <div className="bg-red-600 p-2 rounded-full">
-              <ShoppingCart size={24} weight="fill" color="white" />
+          <li className="p-2 rounded-md border-b-2 border-transparent  hover:text-white hover:bg-red-500 lg:p-0 lg:hover:bg-white lg:hover:text-red-500">
+            <Link href="/menu" as="Menu">
+              <Pizza size={20} weight="bold" className="lg:hidden" />
+              <span className="hidden lg:block">Menu</span>
+            </Link>
+          </li>
+          <Link
+            href="order/basket"
+            as="Basket"
+            className="text-white bg-red-600 p-2 rounded-md"
+          >
+            <div className="relative lg:hidden">
+              <Tote size={20} weight="bold" />
+              <span className="absolute -top-4 -right-3 bg-red-600 px-1 border-2 border-white rounded-full text-[10px]">
+                {cartItens.length}
+              </span>
             </div>
-            <span className="text-xs text-white border-2 rounded-full absolute -right-1 -top-2 bg-red-600 px-1">
-              {cartItens.length}
-            </span>
-          </button>
+            <div className="hidden gap-2 lg:flex">
+              <span>Basket</span>
+              <span className="border"></span>
+              <span>{cartItens.length}</span>
+            </div>
+          </Link>
         </ul>
       </nav>
     </header>

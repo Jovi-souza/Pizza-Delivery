@@ -1,6 +1,6 @@
 export function Form() {
   return (
-    <section className="p-4 w-full max-w-6xl">
+    <section className="p-4 w-full max-w-4xl">
       <h1 className="text-2xl font-bold text-center mb-4">
         <span className="text-red-500">Contact</span> Us
       </h1>

@@ -11,6 +11,8 @@ interface ItemProps {
 
 interface CartProps {
   cartItens: ItemProps[]
+  toggleMenu: string
+  handleToggleMenu: () => void
   addItemToCart: (product: ItemProps) => void
   getQuantityOfItens: (id: string) => number
   increaseCartQuantity: (id: string) => void
@@ -26,6 +28,7 @@ export const ShoppingCartContext = createContext({} as CartProps)
 
 export function CartProvider({ children }: ChildrenProps) {
   const [cartItens, setCartItens] = useState<ItemProps[]>([])
+  const [toggleMenu, setToggleMenu] = useState('translate-x-96')
 
   function addItemToCart(product: ItemProps) {
     const copyCartItens = [...cartItens]
@@ -45,6 +48,12 @@ export function CartProvider({ children }: ChildrenProps) {
 
   function getQuantityOfItens(id: string) {
     return cartItens.find((item) => item.id === id)?.quantity || 1
+  }
+
+  function handleToggleMenu() {
+    setToggleMenu(
+      toggleMenu === 'translate-x-96' ? 'translate-x-0' : 'translate-x-96',
+    )
   }
 
   function increaseCartQuantity(id: string) {
@@ -72,6 +81,8 @@ export function CartProvider({ children }: ChildrenProps) {
     <ShoppingCartContext.Provider
       value={{
         cartItens,
+        toggleMenu,
+        handleToggleMenu,
         addItemToCart,
         removeFromCart,
         getQuantityOfItens,

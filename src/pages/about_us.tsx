@@ -8,7 +8,6 @@ import Location2 from '../assets//Location2.jpg'
 import Location3 from '../assets//Location3.jpg'
 import Location4 from '../assets//Location4.jpg'
 import Location5 from '../assets//Location5.jpg'
-import { Header } from '../Components/Header'
 
 export default function AboutUs() {
   const [sliderRef] = useKeenSlider({
@@ -19,7 +18,6 @@ export default function AboutUs() {
   })
   return (
     <>
-      <Header />
       <div className="flex flex-col gap-4 p-4 justify-center items-center">
         <div className="lg:grid lg:grid-cols-2 overflow-hidden">
           <section className="flex flex-col items-center gap-4 lg:justify-start lg:items-start">
