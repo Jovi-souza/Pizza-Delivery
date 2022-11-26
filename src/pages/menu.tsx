@@ -19,54 +19,60 @@ interface PizzaProps {
 }
 
 export default function Menu({ products }: PizzaProps) {
-  const [deliveryTime, setDeliveryTime] = useState('All')
+  const [typeFilter, settypeFilter] = useState('')
+
+  const filteredProducts = products.filter((product) => {
+    return product.name.includes(`${typeFilter}`)
+  })
 
   return (
     <>
-      <div className="max-w-6xl p-4 m-auto">
-        <h1 className="text-3xl font-semibold">Pizza menu</h1>
-        <Select.Root value={deliveryTime} onValueChange={setDeliveryTime}>
-          <div className="flex gap-2 font-semibold">
-            <span>Filter:</span>
-            <Select.Trigger className="flex gap-2 items-center justify-center font-bold outline-none">
-              <Select.Value aria-label={deliveryTime}>
-                {deliveryTime}
-              </Select.Value>
-              <Select.Icon>
-                <CaretDown className="text-red-500" />
-              </Select.Icon>
-            </Select.Trigger>
-          </div>
+      <div className="p-4 m-auto">
+        <div>
+          <h1 className="text-3xl font-semibold">Pizza menu</h1>
+          <Select.Root value={typeFilter} onValueChange={settypeFilter}>
+            <div className="flex gap-2 font-semibold">
+              <span>Filter:</span>
+              <Select.Trigger className="flex gap-2 items-center justify-center font-bold outline-none">
+                <Select.Value aria-label={typeFilter}>
+                  {typeFilter}
+                </Select.Value>
+                <Select.Icon>
+                  <CaretDown className="text-red-500" />
+                </Select.Icon>
+              </Select.Trigger>
+            </div>
 
-          <Select.Portal>
-            <Select.Content className="bg-white rounded border border-gray-500">
-              <Select.Viewport className="flex flex-col p-2">
-                <Select.Group>
-                  <Select.Item
-                    value="All"
-                    className="outline-none px-2 rounded cursor-pointer border-b hover:bg-green-500 hover:text-white"
-                  >
-                    <Select.ItemText>All</Select.ItemText>
-                  </Select.Item>
-                  <Select.Item
-                    value="Premium"
-                    className="outline-none px-2 rounded cursor-pointer border-b  hover:bg-green-500 hover:text-white"
-                  >
-                    <Select.ItemText>Premium</Select.ItemText>
-                  </Select.Item>
-                  <Select.Item
-                    value="Vegan"
-                    className="outline-none px-2 rounded cursor-pointer hover:bg-green-500 hover:text-white"
-                  >
-                    <Select.ItemText>Vegan</Select.ItemText>
-                  </Select.Item>
-                </Select.Group>
-              </Select.Viewport>
-            </Select.Content>
-          </Select.Portal>
-        </Select.Root>
+            <Select.Portal>
+              <Select.Content className="bg-white rounded border border-gray-500">
+                <Select.Viewport className="flex flex-col p-2">
+                  <Select.Group>
+                    <Select.Item
+                      value=""
+                      className="outline-none px-2 rounded cursor-pointer border-b hover:bg-green-500 hover:text-white"
+                    >
+                      <Select.ItemText>All</Select.ItemText>
+                    </Select.Item>
+                    <Select.Item
+                      value="Premium"
+                      className="outline-none px-2 rounded cursor-pointer border-b  hover:bg-green-500 hover:text-white"
+                    >
+                      <Select.ItemText>Premium</Select.ItemText>
+                    </Select.Item>
+                    <Select.Item
+                      value="Vegan"
+                      className="outline-none px-2 rounded cursor-pointer hover:bg-green-500 hover:text-white"
+                    >
+                      <Select.ItemText>Vegan</Select.ItemText>
+                    </Select.Item>
+                  </Select.Group>
+                </Select.Viewport>
+              </Select.Content>
+            </Select.Portal>
+          </Select.Root>
+        </div>
         <div className="flex flex-wrap w-full justify-center gap-8 lg:justify-[normal]">
-          {products.map((props) => {
+          {filteredProducts.map((props) => {
             return (
               <Product
                 key={props.id}
@@ -111,6 +117,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       products,
     },
-    revalidate: 60 * 60 * 2,
+    revalidate: 60 * 60 * 2, // 2 horas
   }
 }
