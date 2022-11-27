@@ -31,7 +31,6 @@ export default function Registration() {
             type="text"
             placeholder="Your promo code"
             id="password"
-            required
             className="border px-2 py-1 rounded-md outline-gray-400"
           />
         </label>

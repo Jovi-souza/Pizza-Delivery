@@ -188,6 +188,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const response = await stripe.products.list({
     expand: ['data.default_price'],
     limit: 4,
+    active: true,
   })
 
   const products = response.data.map((product) => {
