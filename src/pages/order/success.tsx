@@ -3,7 +3,7 @@ import { ArrowCircleLeft } from 'phosphor-react'
 
 export default function Success() {
   return (
-    <>
+    <div>
       <div className="flex flex-col justify-center items-center gap-4 p-4">
         <h1 className="text-2xl font-bold">Order is accepted</h1>
         <p className="text-center text-sm text-gray-500">
@@ -20,6 +20,6 @@ export default function Success() {
           </Link>
         </button>
       </div>
-    </>
+    </div>
   )
 }

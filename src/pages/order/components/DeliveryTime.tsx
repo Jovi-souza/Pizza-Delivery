@@ -2,7 +2,7 @@ import * as Select from '@radix-ui/react-select'
 import { CaretDown } from 'phosphor-react'
 import { useState } from 'react'
 
-export function DeliveryTime() {
+export default function DeliveryTime() {
   const [deliveryTime, setDeliveryTime] = useState('Now')
   return (
     <Select.Root value={deliveryTime} onValueChange={setDeliveryTime}>

@@ -1,4 +1,4 @@
-import { BasketItens } from './components/BasketItens'
+import BasketItens from './components/BasketItens'
 import { useContext } from 'react'
 import { ShoppingCartContext } from '../../context/cartContext'
 import { ArrowCircleLeft } from 'phosphor-react'
@@ -8,12 +8,13 @@ export default function Basket() {
   const { cartItens } = useContext(ShoppingCartContext)
   const haveItens = cartItens.length === 0 ? 'hidden' : 'flex'
 
-  const teste = cartItens.map((item) => {
-    const convertedPrice = parseFloat(item.price.replace('R$', ''))
+  const priceNumber = cartItens.map((item) => {
+    const convertedPrice =
+      item.price === undefined ? 0 : parseFloat(item.price.replace('R$', ''))
     return convertedPrice * item.quantity
   })
 
-  const totalValue = teste.reduce((at, ac) => {
+  const totalValue = priceNumber.reduce((at, ac) => {
     return at + ac
   }, 0)
 
@@ -43,7 +44,7 @@ export default function Basket() {
       <div className="flex justify-between">
         <Link
           href="/"
-          className="flex justify-center items-center border gap-4 px-4 rounded-full text-xs uppercase text-gray-500"
+          className="flex justify-center items-center border gap-4 px-4 py-2 rounded-full text-xs uppercase text-gray-500"
         >
           <ArrowCircleLeft size={16} weight="regular" />
           back

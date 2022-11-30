@@ -1,10 +1,10 @@
 import Link from 'next/link'
-import { DeliveryTime } from './components/DeliveryTime'
-import { FormRegistration } from './components/orderRegistration'
+import DeliveryTime from './components/DeliveryTime'
+import FormRegistration from './components/orderRegistration'
 
 export default function Registration() {
   return (
-    <>
+    <div>
       <form action="" className="flex flex-col gap-2 p-4 max-w-xl m-auto h-max">
         <label className="text-base flex flex-col">
           Name
@@ -55,6 +55,6 @@ export default function Registration() {
           </Link>
         </button>
       </div>
-    </>
+    </div>
   )
 }

@@ -1,4 +1,4 @@
-export function FormRegistration() {
+export default function FormRegistration() {
   return (
     <>
       <span className="mt-8">Delivery adress</span>

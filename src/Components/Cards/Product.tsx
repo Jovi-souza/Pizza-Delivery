@@ -2,8 +2,6 @@ import Image from 'next/image'
 import { useContext } from 'react'
 import { ShoppingCartContext } from '../../context/cartContext'
 
-// import * as Toast from '@radix-ui/react-toast'
-
 interface cardProps {
   name: string
   imageUrl: string
@@ -53,8 +51,10 @@ export function Product({
         <div className="flex justify-between">
           <span className="font-bold">{price}</span>
           <button
-            onClick={handleAddItem}
             className="flex text-red-500 font-bold border border-red-500 px-2 rounded-full hover:text-white hover:bg-red-500"
+            onClick={() => {
+              handleAddItem()
+            }}
           >
             Buy
           </button>

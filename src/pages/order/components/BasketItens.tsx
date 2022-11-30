@@ -12,7 +12,7 @@ interface ItensCartProps {
   quantity: number
 }
 
-export function BasketItens({
+export default function BasketItens({
   id,
   description,
   name,
@@ -28,7 +28,8 @@ export function BasketItens({
 
   const quantity = getQuantityOfItens(id)
 
-  const converter = parseFloat(price.replace('R$', ''))
+  const converter =
+    price === undefined ? 0 : parseFloat(price.replace('R$', ''))
   const totalPrice = quantity * converter
 
   return (
